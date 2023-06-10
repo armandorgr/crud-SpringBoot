@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Ejemplo de uso del CRUD</title>
+    <link rel="stylesheet" href="css/listado.css" />
+    <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+  <body>
+    <div class="container-tabla">
+      <h1 class="titulo-tabla">Alumnos</h1>
+      <table id="alumnos">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Nota</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div>
+      <form>
+        <input
+          id="txtAlumno"
+          type="text"
+          placeholder="introduce el nombre de la alumno"
+          required
+        />
+        <input
+          type="number"
+          id="txtNota"
+          placeholder="Introduce la nota del alumno"
+          required
+          step="any"
+          min="1"
+          max="10"
+        />
+        <button class="acciones" onclick="add()">Crear</button>
+      </form>
+    </div>
+    <div>
+      <input
+        id="txtNombreUp"
+        type="text"
+        placeholder="introduce el nuevo nombre de la alumno"
+        required
+      />
+      <input
+        type="number"
+        id="txtNotaUp"
+        placeholder="Introduce la nueva nota"
+        required
+        step="any"
+        min="1"
+        max="10"
+      />
+      <button class="acciones" id="actualizar">Actualizar</button>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/crud.js"></script>
+</html>
