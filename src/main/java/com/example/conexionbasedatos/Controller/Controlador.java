@@ -4,6 +4,7 @@ import com.example.conexionbasedatos.DAO.AlumnoDAO;
 import com.example.conexionbasedatos.DAO.UsuarioDAO;
 import com.example.conexionbasedatos.Modelo.Alumno;
 import com.example.conexionbasedatos.Modelo.Usuario;
+import com.example.conexionbasedatos.utils.Jwt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,8 @@ public class Controlador {
     AlumnoDAO asignaturaDAO;
     @Autowired
     UsuarioDAO usuarioDAO;
+    @Autowired
+    Jwt jwt;
 
     @GetMapping("/listar")
     public List<Alumno> listar(){
@@ -39,5 +42,14 @@ public class Controlador {
     public boolean add(@RequestBody Usuario usuario){ return usuarioDAO.add(usuario);}
 
     @GetMapping("/login/{usrName}/{password}")
-    public int login(@PathVariable String usrName, @PathVariable String password){return usuarioDAO.login(usrName, password);}
+    public String login(@PathVariable String usrName, @PathVariable String password){
+        if(usuarioDAO.login(usrName, password)!=-1){
+            String token = jwt.create(String.valueOf(usuarioDAO.login(usrName,password)),usrName);
+
+            return token;
+        }
+        else{
+            return "No login";
+        }
+    }
 }

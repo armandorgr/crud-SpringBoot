@@ -47,11 +47,12 @@ public class UsuarioDAOimp implements UsuarioDAO{
         try{usr = query.setParameter("usrName", usrName).getSingleResult();
 
             if(argon2.verify(usr.getPasswd(), password)){
-                resultado=usr.getRol();
+                resultado=usr.getId();
             }
         }catch (Exception e){
             resultado=-1;
         }
+        System.out.println(resultado);
         return resultado;
     }
 }
